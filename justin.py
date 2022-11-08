@@ -1,2 +1,0 @@
-print("asdjaiushdiauhsdiuhaisudhiu")
-print('f')
