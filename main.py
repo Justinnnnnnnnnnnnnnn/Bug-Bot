@@ -2,7 +2,7 @@ import os
 import discord
 import random
 
-TOKEN = ''
+TOKEN = 'MTAzOTY3MTMyNjc5NDg0NjMwOA.GY8ybo.dSFdoRJelBYB6lAveGTVYTmisFfsuqzDJAwct8'
 
 client = discord.Client(intents=discord.Intents.all())
 
