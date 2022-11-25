@@ -2,6 +2,8 @@ import os
 import discord
 import random
 from discord.ext import commands
+import pandas as pd
+from datetime import datetime
 
 TOKEN = 'MTAzOTY3MTMyNjc5NDg0NjMwOA.GY8ybo.dSFdoRJelBYB6lAveGTVYTmisFfsuqzDJAwct8'
 
@@ -13,6 +15,72 @@ async def on_ready():
 
 bot = commands.Bot(intents=discord.Intents.all(), command_prefix = '/')
 
+def export_csv():
+    """
+    Converts table from html code to a list of its values then converts to csv
+    file.
+    csv file header: ,Date,Visitor,G,Home,G.1,Unnamed: 5,Att.,LOG,Notes
+    csv file line 1: 
+    0,2022-10-07,San Jose Sharks,1.0,Nashville Predators,4.0,,16648.0,2:43,"at (Prague, CZ)"
+    """
+    df = pd.read_html("https://www.hockey-reference.com/leagues/NHL_2023_games.html")
+    df[0].to_csv('scores.csv')
+
+def load_scores(file):
+    """
+    Takes a file as a parameter, reads csv file line for line and stores
+    the date as a key and value a list of information of the game:
+    first team name, first team score, second team name, second team score
+    If there are no updated scores and the fields are empty for the scores 
+    it stops storing information.
+    Returns scores as a dictionary.
+    ex. '2022-10-11': ['Vegas Golden Knights', '4', 
+                       'Los Angeles Kings', '3', 
+                       'Tampa Bay Lightning', '1', 
+                       'New York Rangers', '3']
+    """
+    scores = {}
+    f = open(file)
+    f.readline()
+    for line in f:
+        info = line.strip().split(',')
+        if info[3] == '':
+            break
+        line_num, date = info[0], info[1]
+        team1, score1, team2, score2 = info[2], info[3], info[4], info[5]
+        score1 = str(int(float(score1)))
+        score2 = str(int(float(score2)))
+        if date not in scores:
+            scores[date] = [team1, score1, team2, score2]
+        else:
+            scores[date] += [team1, score1, team2, score2]
+    f.close()
+    return scores
+
+def get_current_date():
+    """
+    Gets current date with datetime.now(), formats it and returns it as a 
+    string.
+    ex. '2022-10-11'
+    """
+    now = str(datetime.now())
+    formatted_date = ''
+    for c in now:
+        if c == ' ':
+            break
+        else:
+            formatted_date += c
+    return formatted_date
+
+def get_recent_scores(scores):
+    """
+    dictionary : '2022-10-11': ['Vegas Golden Knights', '4', 
+                                'Los Angeles Kings', '3', 
+                                'Tampa Bay Lightning', '1', 
+                                'New York Rangers', '3']
+    """
+    recent_scores = []
+    
 
 @client.event
 async def on_message(message):
@@ -148,4 +216,14 @@ async def on_message(message):
         give_role = discord.utils.get(message.guild.roles, name= role)
         await message.author.edit(roles=[give_role])
 
+    if message.content.startswith('/nhlscores'):
+        export_csv()
+        scores = load_scores('scores.csv')
+        current_date = get_current_date()
+        await message.channel.send("Let me update you on the most updated hockey scores as best as I can!")
+        await message.channel.send()
+    
+    if message.content.startswith('/test'):
+        await message.channel.send("This is a test I see it needs a string for a parameter\nam I on a new line now?")
+        await message.channel.send("Can I do two seperate messages?")
 client.run(TOKEN)
