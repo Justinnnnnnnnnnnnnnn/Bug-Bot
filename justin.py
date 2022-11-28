@@ -4,14 +4,23 @@ from discord.ext import commands
 from requests import get
 import json
 
-client = commands.Bot(command_prefix="!")
+client = commands.Bot(command_prefix="/meme")
+
+
 @client.command()
-async def hi(ctx):
-   await ctx.reply("hi")
+async def test(ctx):
+   await ctx.reply("Testing")
+
+   
 @client.command()
-async def meme(ctx):
-    content = get("https://meme-api.herokuapp.com/gimme").text
+async def Memes(ctx):
+    content = get("https://meme-api.herokuapp.com/gimme").text # API
+
     data = json.loads(content,)
-    meme = discord.Embed(title=f"{data['title']}", Color = discord.Color.random()).set_image(url=f"{data['url']}")
-    await ctx.reply(embed=meme)
-client.run("Token")
+
+    memeData = discord.Embed(title=f"{data['title']}", Color = discord.Color.random()).set_image(url=f"{data['url']}")
+
+    await ctx.reply(embed=memeData)
+
+
+client.run("Token") # Needs the token
