@@ -1,32 +1,17 @@
 # Dank memes
 import discord
-import random
-import nextcord
-from nextcord.ext import commands
+from discord.ext import commands
+from requests import get
 import json
-import urllib
 
-
-UserInput = commands.Bot(command_prefix= "/meme")
-
-async def ready():
-    print("When Bot is ready")
-
-
-@UserInput.command()
-async def generateMeme(run):
-    memeAPI = urllib.request.urlopen("https://meme-api.herokuapp.com/gimme")
-
-    memeData = json.load(memeAPI)
-
-    memeURL = memeData["title"]
-
-    memeName = memeData["url"]
-
-
-    border = nextcord.Embed(title = memeName, color = nextcord.colour.gray())
-
-    border.set_image(url = memeURL)
-
-    await run.send(border = border)
-
+client = commands.Bot(command_prefix="!")
+@client.command()
+async def hi(ctx):
+   await ctx.reply("hi")
+@client.command()
+async def meme(ctx):
+    content = get("https://meme-api.herokuapp.com/gimme").text
+    data = json.loads(content,)
+    meme = discord.Embed(title=f"{data['title']}", Color = discord.Color.random()).set_image(url=f"{data['url']}")
+    await ctx.reply(embed=meme)
+client.run("Token")
