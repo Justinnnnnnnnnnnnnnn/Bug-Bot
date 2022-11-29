@@ -44,6 +44,10 @@ async def on_message(message):
     print(f'{username}: {user_message} ({channel})')
 
 
+    if message.author == client.user:
+        return
+
+
     if message.content.startswith('/meme'):
         content = get("https://meme-api.herokuapp.com/gimme%22").text 
 
@@ -54,8 +58,6 @@ async def on_message(message):
         await message.channel.send(embed=memeData)
 
 
-    if message.author == client.user:
-        return
     if message.content.startswith('/quiz'):
         channel = message.channel
         await channel.send('Welcome to the role determiner quiz! press (x) to continue')
