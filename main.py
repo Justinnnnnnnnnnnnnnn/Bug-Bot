@@ -2,6 +2,8 @@ import os
 import discord
 import random
 from discord.ext import commands
+from requests import get
+import json
 
 TOKEN = 'MTAzOTY3MTMyNjc5NDg0NjMwOA.GY8ybo.dSFdoRJelBYB6lAveGTVYTmisFfsuqzDJAwct8'
 
@@ -12,6 +14,25 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(client))
 
 bot = commands.Bot(intents=discord.Intents.all(), command_prefix = '/')
+
+
+client = commands.Bot(intents = discord.Intents.all(), command_prefix = '/meme')
+
+
+@client.command()
+async def test(ctx):
+   await ctx.reply("Testing")
+
+
+@client.command()
+async def Memes(ctx):
+    content = get("https://meme-api.herokuapp.com/gimme%22).text # API
+
+    data = json.loads(content,)
+
+    memeData = discord.Embed(title=f"{data['title']}", Color = discord.Color.random()).set_image(url=f"{data['url']}")
+
+    await ctx.reply(embed=memeData)
 
 
 @client.event
