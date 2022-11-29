@@ -23,4 +23,4 @@ async def Memes(ctx):
     await ctx.reply(embed=memeData)
 
 
-client.run("Token") # Needs the token
+client.run('MTAzOTY3MTMyNjc5NDg0NjMwOA.GY8ybo.dSFdoRJelBYB6lAveGTVYTmisFfsuqzDJAwct8') # Needs the token
