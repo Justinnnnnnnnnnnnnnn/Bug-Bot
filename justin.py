@@ -9,12 +9,12 @@ client = commands.Bot(intents = discord.Intents.all(), command_prefix = '/meme')
 
 @client.command()
 async def test(ctx):
-   await ctx.reply("Testing")
+   await ctx.reply('Testing')
 
    
 @client.command()
 async def Memes(ctx):
-    content = get("https://meme-api.herokuapp.com/gimme").text # API
+    content = get('https://meme-api.herokuapp.com/gimme').text # API
 
     data = json.loads(content,)
 
