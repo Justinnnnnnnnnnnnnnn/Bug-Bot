@@ -26,7 +26,7 @@ async def test(ctx):
 
 @client.command()
 async def Memes(ctx):
-    content = get("https://meme-api.herokuapp.com/gimme%22).text # API
+    content = get("https://meme-api.herokuapp.com/gimme%22").text 
 
     data = json.loads(content,)
 
