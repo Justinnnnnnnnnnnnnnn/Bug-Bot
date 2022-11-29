@@ -4,6 +4,7 @@ import random
 from discord.ext import commands
 import pandas as pd
 from datetime import datetime
+from words import *
 
 TOKEN = 'MTAzOTY3MTMyNjc5NDg0NjMwOA.GY8ybo.dSFdoRJelBYB6lAveGTVYTmisFfsuqzDJAwct8'
 
@@ -86,6 +87,78 @@ def get_recent_scores(scores):
     last_key = list(scores)[-1]
     recent_scores = scores[last_key]
     return recent_scores
+
+def get_word(words):
+    '''
+    Takes a list of words as a parameter and randomly returns one word from 
+    that list.
+    '''
+    word = words[random.randint(0, len(words))]
+    return word
+
+def possible_gallows():
+    '''
+    Returns a tuple of all possible gallows.
+    '''
+    
+    gallows = ("--------\n"
+               "|\n"
+               "|\n"
+               "|\n"
+               "|\n"
+               "|\n"
+               "----\n",
+               "--------\n"
+               "|       |\n"
+               "|\n"
+               "|\n"
+               "|\n"
+               "|\n"
+               "----\n",
+               "--------\n"
+               "|       |\n"
+               "|      O\n"
+               "|\n"
+               "|\n"
+               "|\n"
+               "----\n",
+               "--------\n"
+               "|       |\n"
+               "|      O\n"
+               "|     /\n"
+               "|\n"
+               "|\n"
+               "----\n",
+               "--------\n"
+               "|       |\n"
+               "|      O\n"
+               "|     /|\n"
+               "|\n"
+               "|\n"
+               "----\n",
+               "--------\n"
+               "|       |\n"
+               "|      O\n"
+               "|     /|\\\n"
+               "|\n"
+               "|\n"
+               "----\n",
+               "--------\n"
+               "|       |\n"
+               "|      O\n"
+               "|     /|\\\n"
+               "|     /\n"
+               "|\n"
+               "----\n",
+               "--------\n"
+               "|       |\n"
+               "|      O\n"
+               "|     /|\\\n"
+               "|     / \\\n"
+               "|\n"
+               "----\n")
+    return gallows
+
 @client.event
 async def on_message(message):
 
@@ -235,7 +308,36 @@ async def on_message(message):
                 game = []
         for game in games:
             await message.channel.send(f"{game[0]} {game[1]} {game[2]} {game[3]}")
-    if message.content.startswith('/test'):
-        await message.channel.send("This is a test I see it needs a string for a parameter\nam I on a new line now?")
-        await message.channel.send("Can I do two seperate messages?")
+    if message.content.startswith('/hangman'):
+        await message.channel.send("Lets play hangman! Type STOP to quit the game at any time.")
+        gallows = possible_gallows()   
+        letters_guessed = []
+        incorrect_guesses = 0
+        word = get_word(words)
+        reconstruction = list('-' * len(word))
+        # await message.channel.send(f"Dev check: the word is {word}") DEV CHECK
+        await message.channel.send(gallows[incorrect_guesses])
+        await message.channel.send('-' * len(word))
+        while incorrect_guesses < 7 and "".join(reconstruction) != word:
+            def check(m):
+                return m.content
+            m = await client.wait_for('message', check=check)
+            if m.content == 'STOP':
+                await message.channel.send("Play again soon!")
+                break
+            if m.content != 'STOP' and m.content.isalpha() and len(m.content) == 1:
+                letters_guessed.append(m.content)
+                if m.content in word:
+                    for i in range(len(word)):
+                        if word[i] == m.content:
+                            reconstruction[i] = m.content
+                else:
+                    incorrect_guesses += 1
+                await message.channel.send(f'{gallows[incorrect_guesses]}\n {"".join(reconstruction)} \tletters guessed: {", ".join(letters_guessed)}')
+            else:
+                await message.channel.send("Please enter a single letter.")
+        if incorrect_guesses == 7:
+            await message.channel.send(f"Sorry, you took more than the allowed 7 incorrect guesses - \nthe answer was '{word}'")
+        else:
+            await message.channel.send(f"You took {len(letters_guessed)} guesses to guess '{word}'")
 client.run(TOKEN)
