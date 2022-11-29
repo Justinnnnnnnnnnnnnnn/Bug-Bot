@@ -60,10 +60,10 @@ async def on_message(message):
 
     if message.content.startswith('/quiz'):
         channel = message.channel
-        await channel.send('Welcome to the role determiner quiz! press (x) to continue')
+        await channel.send('Welcome to the role determiner quiz! press (z) to continue')
 
         def check(m):
-            return m.content == 'x' 
+            return m.content == 'z' 
 
         await client.wait_for('message', check=check)
         await message.channel.send("Question 1/5: It's a dark stormy night... What do you do?: \n (a) Hide under the cover where it's safe\n (b) Go out and explore... who knows what you might find\n (c) Relax and appreciate it, you've always enjoyed storms\n (d) Call up your friends its the perfect night for get together")
