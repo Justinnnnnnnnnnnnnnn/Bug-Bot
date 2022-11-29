@@ -4,7 +4,7 @@ from discord.ext import commands
 from requests import get
 import json
 
-client = commands.Bot(command_prefix="/meme")
+client = commands.Bot(intents = discord.Intents.all(), command_prefix = '/meme')
 
 
 @client.command()
