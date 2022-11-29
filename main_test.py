@@ -74,14 +74,18 @@ def get_current_date():
 
 def get_recent_scores(scores):
     """
+    Takes score dictionary as follows:
     dictionary : '2022-10-11': ['Vegas Golden Knights', '4', 
                                 'Los Angeles Kings', '3', 
                                 'Tampa Bay Lightning', '1', 
                                 'New York Rangers', '3']
+    and converts the dictionary to a list and gets the last key in the
+    dictionary (the most up to date score date). Uses this last key and gets the
+    list of scores (valaue) with that date (key) and returns it as a list.
     """
-    recent_scores = []
-    
-
+    last_key = list(scores)[-1]
+    recent_scores = scores[last_key]
+    return recent_scores
 @client.event
 async def on_message(message):
 
@@ -219,10 +223,18 @@ async def on_message(message):
     if message.content.startswith('/nhlscores'):
         export_csv()
         scores = load_scores('scores.csv')
-        current_date = get_current_date()
+        recent_scores = get_recent_scores(scores)
+        game = []
+        games = []
         await message.channel.send("Let me update you on the most updated hockey scores as best as I can!")
-        await message.channel.send()
-    
+        await message.channel.send(f"Here are the scores for {list(scores)[-1]}:")
+        for i in range(len(recent_scores)):
+            game.append(recent_scores[i])
+            if i % 4 == 3:
+                games.append(game)
+                game = []
+        for game in games:
+            await message.channel.send(f"{game[0]} {game[1]} {game[2]} {game[3]}")
     if message.content.startswith('/test'):
         await message.channel.send("This is a test I see it needs a string for a parameter\nam I on a new line now?")
         await message.channel.send("Can I do two seperate messages?")
