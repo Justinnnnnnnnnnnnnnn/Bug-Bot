@@ -193,95 +193,106 @@ async def on_message(message):
         def check(m):
             global count 
             count = 0
-            if m.content == 'a':
-                count = count + 1
-                print(count)
-            elif m.content == 'b':
-                count = count + 5
-                print(count)
-            elif m.content == 'c':
-                count = count + 3
-                print(count)
-            elif m.content == 'd':
+            if m.content == 'a' or 'A':
                 count = count + 7
                 print(count)
-            return count, m.content == 'a' or 'b' or 'c' or 'd' and count
+            elif m.content == 'b' or 'B':
+                count = count + 1
+                print(count)
+            elif m.content == 'c' or 'C':
+                count = count + 3
+                print(count)
+            elif m.content == 'd' or 'D':
+                count = count + 5
+                print(count)
+            elif m.content != 'a' or 'b' or 'c' or 'd' or 'A' or 'B' or 'C' or 'D':
+                count = 0
+            return m.content == 'a' or 'b' or 'c' or 'd' or 'A' or 'B' or 'C' or 'D' and count
         
         await client.wait_for('message', check=check)
         await message.channel.send("Question 2/5: What word would the people closest to you best use to describe you?: \n (a) Daring \n (b) Reserved \n (c) Caring \n (d) Optimistic")
         
         def check(m):
             global count 
-            if m.content == 'a':
+            if m.content == 'a' or 'A':
                 count = count + 7
                 print(count)
-            elif m.content == 'b':
+            elif m.content == 'b' or 'B':
                 count = count + 1
                 print(count)
-            elif m.content == 'c':
+            elif m.content == 'c' or 'C':
                 count = count + 3
                 print(count)
-            elif m.content == 'd':
+            elif m.content == 'd' or 'D':
                 count = count + 5
                 print(count)
-            return count, m.content == 'a' or 'b' or 'c' or 'd' and count
+            elif m.content != 'a' or 'b' or 'c' or 'd' or 'A' or 'B' or 'C' or 'D':
+                count = 0
+            return m.content == 'a' or 'b' or 'c' or 'd' or 'A' or 'B' or 'C' or 'D' and count
         
         await client.wait_for('message', check=check)
         await message.channel.send("Question 3/5: What smell comes to mind when you think of home?: \n (a) Fresh cookies right out of the oven \n (b) Brewing coffee \n (c) Early morning spring rain \n (d) Simple vanilla " )
 
         def check(m):
-            global count
-            if m.content == 'a':
+            global count 
+            if m.content == 'a' or 'A':
                 count = count + 7
                 print(count)
-            elif m.content == 'b':
-                count = count + 3
-                print(count)
-            elif m.content == 'c':
-                count = count + 5
-                print(count)
-            elif m.content == 'd':
+            elif m.content == 'b' or 'B':
                 count = count + 1
                 print(count)
-            return count, m.content == 'a' or 'b' or 'c' or 'd' and count
+            elif m.content == 'c' or 'C':
+                count = count + 3
+                print(count)
+            elif m.content == 'd' or 'D':
+                count = count + 5
+                print(count)
+            elif m.content != 'a' or 'b' or 'c' or 'd' or 'A' or 'B' or 'C' or 'D':
+                count = 0
+            return m.content == 'a' or 'b' or 'c' or 'd' or 'A' or 'B' or 'C' or 'D' and count
+            
         
         await client.wait_for('message', check=check)
         await message.channel.send("Question 4/5: What color could you never get sick of?: \n (a) Vibrant yellow \n (b) Pastel blue \n (c) Apple red \n (d) Forestly green")
 
         def check(m):
-            global count
-            if m.content == 'a':
-                count = count + 5
-                print(count)
-            elif m.content == 'b':
-                count = count + 3
-                print(count)
-            elif m.content == 'c':
+            global count 
+            if m.content == 'a' or 'A':
                 count = count + 7
                 print(count)
-            elif m.content == 'd':
+            elif m.content == 'b' or 'B':
                 count = count + 1
                 print(count)
-            return count, m.content == 'a' or 'b' or 'c' or 'd' and count
+            elif m.content == 'c' or 'C':
+                count = count + 3
+                print(count)
+            elif m.content == 'd' or 'D':
+                count = count + 5
+                print(count)
+            elif m.content != 'a' or 'b' or 'c' or 'd' or 'A' or 'B' or 'C' or 'D':
+                count = 0
+            return m.content == 'a' or 'b' or 'c' or 'd' or 'A' or 'B' or 'C' or 'D' and count
         
         await client.wait_for('message', check=check)
         await message.channel.send("Question 5/5: If you could go back in time which era?: \n (a) To the dinosaur age \n (b) The 90's! \n (c) The future instead! \n (d) The Roaring 20's")
   
         def check(m):
-            global count
-            if m.content == 'a':
-                count = count + 1
-                print(count)
-            elif m.content == 'b':
-                count = count + 5
-                print(count)
-            elif m.content == 'c':
-                count = count + 3
-                print(count)
-            elif m.content == 'd':
+            global count 
+            if m.content == 'a' or 'A':
                 count = count + 7
                 print(count)
-            return m.content == 'a' or 'b' or 'c' or 'd' and count
+            elif m.content == 'b' or 'B':
+                count = count + 1
+                print(count)
+            elif m.content == 'c' or 'C':
+                count = count + 3
+                print(count)
+            elif m.content == 'd' or 'D':
+                count = count + 5
+                print(count)
+            elif m.content != 'a' or 'b' or 'c' or 'd' or 'A' or 'B' or 'C' or 'D':
+                count = 0
+            return m.content == 'a' or 'b' or 'c' or 'd' or 'A' or 'B' or 'C' or 'D' and count
         
         await client.wait_for('message', check=check)
         if count > 25:
@@ -291,9 +302,12 @@ async def on_message(message):
         elif count > 15:
             role = 'Dragonfly'
         elif count > 10:
-            role = 'Butterfly'
-        elif count <= 10:
+            role = 'Buttlerfly'
+        elif count >= 5:
             role = 'Ant'
+        if count < 5:
+        
+            await message.channel.send('appears we have a test cheater among us... please retake the quiz correctly this time')
 
         await message.channel.send(f"Congrats!! You've been selected for the {role} role")
         give_role = discord.utils.get(message.guild.roles, name= role)
