@@ -8,6 +8,7 @@ from words import *
 
 client = discord.Client(intents=discord.Intents.all())
 bot = commands.Bot(intents=discord.Intents.all(), command_prefix = '/')
+TOKEN = 'Insert Token Here'
 
 commands = {
     '/intro': 'A command used to display a greeting message for the bot andd lists all possible commands that can be executed',
@@ -538,4 +539,4 @@ async def on_message(message):
         else:
             await message.channel.send(f"You took {len(letters_guessed)} guesses to guess '{word}'")
 
-client.run(os.getenv('TOKEN'))
+client.run(os.getenv(TOKEN))
