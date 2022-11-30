@@ -514,4 +514,4 @@ async def on_message(message):
         else:
             await message.channel.send(f"You took {len(letters_guessed)} guesses to guess '{word}'")
 
-client.run(TOKEN)
+client.run(os.getenv('TOKEN'))
