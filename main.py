@@ -8,7 +8,7 @@ from words import *
 
 client = discord.Client(intents=discord.Intents.all())
 bot = commands.Bot(intents=discord.Intents.all(), command_prefix = '/')
-client_1 = commands.Bot(intents = discord.Intents.all(), command_prefix = '/meme')
+
 commands = {
     '/intro': 'A command used to display a greeting message for the bot andd lists all possible commands that can be executed',
     '/hangman': 'A command used to start a quick game of hangman. The user is allowed no more than 7 incorrect guesses and they try to guess a word imported from a list of words that contains 848 words. Each wrong guess adds a body part to the gallows. Correct and incorrect guesses are both displayed for the user to see.',
