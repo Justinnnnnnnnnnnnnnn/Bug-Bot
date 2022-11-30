@@ -9,6 +9,26 @@ from words import *
 client = discord.Client(intents=discord.Intents.all())
 bot = commands.Bot(intents=discord.Intents.all(), command_prefix = '/')
 client_1 = commands.Bot(intents = discord.Intents.all(), command_prefix = '/meme')
+commands = {
+    '/intro': 'A command used to display a greeting message for the bot andd lists all possible commands that can be executed',
+    '/hangman': 'A command used to start a quick game of hangman. The user is allowed no more than 7 incorrect guesses and they try to guess a word imported from a list of words that contains 848 words. Each wrong guess adds a body part to the gallows. Correct and incorrect guesses are both displayed for the user to see.',
+    '/nhlscores': 'A command used to get the most up to date NHL scores in terms of the website used from the internet and posts the scores for that day.',
+    '/quiz': 'A command that brings up a personality based quiz using a point system that will assign the individual a role at the end of the test, each time you get a new role with the quiz the bot will automatically replace your old role',
+    '/madlib': 'Command that prompts the user to enter various words; displays a story once all inputs have been taken. If at any time in the middle of entering inputs, the user can quit by simply entering ‘quit’ rather than what is currently being prompted for.',
+    '/sus': 'Displays a crewmate shaped emoji from the hit game Among Us.',
+    '/lenny': 'Displays a lenny face.',
+    '/happy': 'Displays a text-based happy face',
+    '/hap': 'Displays a text-based happier face.',
+    '/shrug': 'Displays a shrug',
+    '/watching': 'Displays a text based emoji of a face peeking around the corner of a wall.',
+    '/look': 'Displays combination of emojis, showing a face.',
+    '/studying': 'Displays a student studying in peak performance',
+    '/cs': 'Displays a gif of a monkey attached to an oxygen tank.',
+    '/cope': 'Displays a gif of a frog, crying, and attached to an oxygen tank.',
+    '/over': 'Displays a gif of kermit falling off a building',
+    '/ok': 'Displays a gif of a cat with tears in its eyes.',
+    '/bonk': 'Displays a gif of a dog hitting another dog over the head with a wooden bat.',
+}
 
 @client.event
 async def on_ready():
@@ -166,6 +186,11 @@ async def on_message(message):
 
     if message.author == client.user:
         return
+
+    if message.content.startswith('/intro'):
+        await message.channel.send("BugBot, at your service!")
+        for k, v in commands.items():
+            await message.channel.send(f"{k}: {v}")
 
     if message.content.startswith('/meme'):
         content = get("https://meme-api.herokuapp.com/gimme%22").text 
