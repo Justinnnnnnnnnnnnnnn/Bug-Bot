@@ -2,8 +2,6 @@ import os
 import discord
 import random
 from discord.ext import commands
-from requests import get
-import json
 import pandas as pd
 from datetime import datetime
 from words import *
