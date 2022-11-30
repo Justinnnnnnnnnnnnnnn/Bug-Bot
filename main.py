@@ -79,7 +79,7 @@ def get_current_date():
 
 def get_recent_scores(scores):
     """
-    Takes score dictionary as follows:
+    Takes scores dictionary as follows:
     dictionary : '2022-10-11': ['Vegas Golden Knights', '4', 
                                 'Los Angeles Kings', '3', 
                                 'Tampa Bay Lightning', '1', 
