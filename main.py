@@ -539,10 +539,6 @@ async def on_message(message):
         else:
             await message.channel.send(f"You took {len(letters_guessed)} guesses to guess '{word}'")
 
-<<<<<<< HEAD
 # Token is manually inputed into run without any method of keeping the token secure (GitHub repo must stay private)
 # REPL is setup differently in order to keep the token secure by using secret variables
 client.run('MTAzOTY3MTMyNjc5NDg0NjMwOA.Gz2E4k.bQaNiATiw0hqY7PQg17aL7xONydmEc71BNPvAw')
-=======
-client.run(os.getenv(TOKEN))
->>>>>>> 1c0fa1853d20403d9be2778109a3ae69d958fad6
