@@ -6,14 +6,8 @@ import pandas as pd
 from datetime import datetime
 from words import *
 
-TOKEN = 'MTAzOTY3MTMyNjc5NDg0NjMwOA.GY8ybo.dSFdoRJelBYB6lAveGTVYTmisFfsuqzDJAwct8'
-
 client = discord.Client(intents=discord.Intents.all())
-
-
 bot = commands.Bot(intents=discord.Intents.all(), command_prefix = '/')
-
-
 client_1 = commands.Bot(intents = discord.Intents.all(), command_prefix = '/meme')
 
 @client.event
