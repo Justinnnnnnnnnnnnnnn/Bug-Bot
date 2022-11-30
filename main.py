@@ -22,21 +22,6 @@ client_1 = commands.Bot(intents = discord.Intents.all(), command_prefix = '/meme
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
 
-# @client_1.command()
-# async def test(ctx):
-#    await ctx.reply("Testing")
-
-
-# @client_1.command()
-# async def Memes(ctx):
-#     content = get("https://meme-api.herokuapp.com/gimme%22").text 
-
-#     data = json.loads(content,)
-
-#     memeData = discord.Embed(title=f"{data['title']}", Color = discord.Color.random()).set_image(url=f"{data['url']}")
-
-#     await ctx.reply(embed=memeData)
-
 def export_csv():
     """
     Converts table from html code to a list of its values then converts to csv
