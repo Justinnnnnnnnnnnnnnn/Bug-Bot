@@ -8,7 +8,8 @@ from words import *
 
 client = discord.Client(intents=discord.Intents.all())
 bot = commands.Bot(intents=discord.Intents.all(), command_prefix = '/')
-client_1 = commands.Bot(intents = discord.Intents.all(), command_prefix = '/meme')
+TOKEN = 'Insert Token Here'
+
 commands = {
     '/intro': 'A command used to display a greeting message for the bot andd lists all possible commands that can be executed',
     '/hangman': 'A command used to start a quick game of hangman. The user is allowed no more than 7 incorrect guesses and they try to guess a word imported from a list of words that contains 848 words. Each wrong guess adds a body part to the gallows. Correct and incorrect guesses are both displayed for the user to see.',
@@ -191,15 +192,6 @@ async def on_message(message):
         await message.channel.send("BugBot, at your service!")
         for k, v in commands.items():
             await message.channel.send(f"{k}: {v}")
-
-    if message.content.startswith('/meme'):
-        content = get("https://meme-api.herokuapp.com/gimme%22").text 
-
-        data = json.loads(content,)
-
-        memeData = discord.Embed(title=f"{data['title']}", Color = discord.Color.random()).set_image(url=f"{data['url']}")
-
-        await message.channel.send(embed=memeData)
 
     if message.content.startswith('/quiz'):
         channel = message.channel
@@ -547,6 +539,10 @@ async def on_message(message):
         else:
             await message.channel.send(f"You took {len(letters_guessed)} guesses to guess '{word}'")
 
+<<<<<<< HEAD
 # Token is manually inputed into run without any method of keeping the token secure (GitHub repo must stay private)
 # REPL is setup differently in order to keep the token secure by using secret variables
 client.run('MTAzOTY3MTMyNjc5NDg0NjMwOA.Gz2E4k.bQaNiATiw0hqY7PQg17aL7xONydmEc71BNPvAw')
+=======
+client.run(os.getenv(TOKEN))
+>>>>>>> 1c0fa1853d20403d9be2778109a3ae69d958fad6
