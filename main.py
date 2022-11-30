@@ -541,4 +541,4 @@ async def on_message(message):
 
 # Token is manually inputed into run without any method of keeping the token secure (GitHub repo must stay private)
 # REPL is setup differently in order to keep the token secure by using secret variables
-client.run('MTAzOTY3MTMyNjc5NDg0NjMwOA.Gz2E4k.bQaNiATiw0hqY7PQg17aL7xONydmEc71BNPvAw')
+client.run(TOKEN)
