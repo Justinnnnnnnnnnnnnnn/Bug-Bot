@@ -73,10 +73,5 @@ possible_gallows():
 SETUP
 Insert the token provided  
 
-CONTACT
-Start here
-
-NOTICE
-Start here
 
 
